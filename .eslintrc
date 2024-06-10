@@ -1,3 +1,16 @@
 {
-    "extends": "next"
+    "extends": "next",
+    "rules": {
+        "no-restricted-imports": [
+            "warn",
+            {
+                "patterns": [
+                    {
+                        "group": ["../../"],
+                        "message": "Relative imports are not allowed."
+                    }
+                ]
+            }
+        ]
+    }
 }

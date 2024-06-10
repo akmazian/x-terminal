@@ -1,8 +1,11 @@
 import { User } from '@supabase/supabase-js'
-import { useReduxSelector } from './redux'
+import { useReduxDispatch, useReduxSelector } from './redux'
+import { useEffect } from 'react'
 
 export const useNullableUser = () => {
-    return useReduxSelector(state => state.userStore.user)
+    const { user } = useReduxSelector(state => state.userStore)
+
+    return user
 }
 
 export const useUser = (): User => {
