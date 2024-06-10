@@ -1,20 +1,13 @@
 'use client'
 
-import { PropsWithChildren, useRef } from 'react'
+import { PropsWithChildren } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
-import { createStore, ReduxStore } from '@/lib/store'
+import { store } from '../../lib/store'
 import ErrorBoundaryProvider from './boundary'
 
 const Providers = ({ children }: PropsWithChildren) => {
-    console.log('Provider loading')
-    const storeRef = useRef<ReduxStore>()
-
-    if (!storeRef?.current) {
-        storeRef.current = createStore()
-    }
-
     return (
-        <ReduxProvider store={storeRef.current}>
+        <ReduxProvider store={store}>
             <ErrorBoundaryProvider>{children}</ErrorBoundaryProvider>
         </ReduxProvider>
     )
