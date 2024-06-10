@@ -1,19 +1,27 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSignUpMutation } from '../../lib/store/auth'
+import { useSignInMutation, useSignUpMutation } from '@/lib/store/auth'
 
 const AuthPage = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
-    const [signUp, { isLoading, error }] = useSignUpMutation()
+    const [signUp, { isLoading: isSignUpLoading, error: signUpError }] =
+        useSignUpMutation()
+    const [signIn, { isLoading: isSignInLoading, error: signInError }] =
+        useSignInMutation()
 
     useEffect(() => {
-        if (error) throw error
-    }, [error])
+        if (signUpError) throw signUpError
+    }, [signUpError])
+
+    useEffect(() => {
+        if (signInError) throw signInError
+    }, [signInError])
+
     return (
-        <div>
+        <div className="">
             <input
                 type="email"
                 className="text-black"
@@ -36,7 +44,16 @@ const AuthPage = () => {
             >
                 Sign Up
             </button>
-            {isLoading && <>Sign Up Loading</>}
+            <button
+                onClick={() => {
+                    signIn({ email, password })
+                }}
+                className="bg-white rounded-full px-4 text-black"
+            >
+                Sign In
+            </button>
+            {isSignUpLoading && <>Sign Up Loading</>}
+            {isSignInLoading && <>Sign In Loading</>}
         </div>
     )
 }

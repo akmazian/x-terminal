@@ -13,8 +13,8 @@ const ErrorBoundary: FC<PropsWithChildren> = ({ children }) => {
             console.error('Caught error:', event.error || event.message)
 
             setErrorInfo({
-                message: event.error?.message || event.message,
-                stack: event.error?.stack || 'No stack trace available',
+                message: event.error?.status || event.message,
+                stack: event.error?.data || 'No stack trace available',
             })
         }
 
@@ -22,8 +22,8 @@ const ErrorBoundary: FC<PropsWithChildren> = ({ children }) => {
             console.error('Unhandled promise rejection:', event.reason)
 
             setErrorInfo({
-                message: event.reason?.message || 'Unhandled promise rejection',
-                stack: event.reason?.stack || 'No stack trace available',
+                message: event.reason?.status || 'Unhandled promise rejection',
+                stack: event.reason?.data || 'No stack trace available',
             })
         }
 
