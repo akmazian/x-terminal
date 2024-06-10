@@ -58,7 +58,10 @@ export const authApi = createApi({
                     return { data: session }
                 } catch (error: any) {
                     return {
-                        error: { status: 'CUSTOM_ERROR', data: error.message },
+                        error: {
+                            status: 'Sign in failed',
+                            data: error.message,
+                        },
                     }
                 }
             },
@@ -79,8 +82,28 @@ export const authApi = createApi({
                 }
             },
         }),
+        fetchUser: builder.query<User | null, void>({
+            async queryFn() {
+                try {
+                    const { data, error } = await supabase.auth.getUser()
+                    if (error) throw error
+                    return { data: data.user }
+                } catch (error: any) {
+                    return {
+                        error: {
+                            status: 'Get user failed',
+                            data: error.message,
+                        },
+                    }
+                }
+            },
+        }),
     }),
 })
 
-export const { useSignUpMutation, useSignInMutation, useSignOutMutation } =
-    authApi
+export const {
+    useSignUpMutation,
+    useSignInMutation,
+    useSignOutMutation,
+    useFetchUserQuery,
+} = authApi

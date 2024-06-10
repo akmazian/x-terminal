@@ -1,9 +1,5 @@
-import dynamic from 'next/dynamic'
+import { MockPage } from '../components/mock-page'
 
-const App = dynamic(() => import('../components/AppShell'), {
-    ssr: false,
-})
+const Page = () => <MockPage name="home" />
 
-export default function Page() {
-    return <App />
-}
+export default Page
