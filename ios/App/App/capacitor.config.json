@@ -9,5 +9,12 @@
 			"launchShowDuration": 0
 		}
 	},
-	"cordova": {}
+	"cordova": {},
+	"packageClassList": [
+		"AppPlugin",
+		"CAPCameraPlugin",
+		"HapticsPlugin",
+		"KeyboardPlugin",
+		"StatusBarPlugin"
+	]
 }
