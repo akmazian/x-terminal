@@ -14,6 +14,9 @@ importers:
       '@capacitor/app':
         specifier: 6.0.0
         version: 6.0.0(@capacitor/core@6.0.0)
+      '@capacitor/camera':
+        specifier: 6.0.0
+        version: 6.0.0(@capacitor/core@6.0.0)
       '@capacitor/core':
         specifier: 6.0.0
         version: 6.0.0
@@ -144,6 +147,11 @@ packages:
 
   '@capacitor/app@6.0.0':
     resolution: {integrity: sha512-X5UGd90Jh5p9rmoPyMqFyFWqOypdJgVJhYcM5X1YyDVJJGzmJ5MuYv1+ajj5DW9Qyh+5a3th9WYptdGby8jidA==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+
+  '@capacitor/camera@6.0.0':
+    resolution: {integrity: sha512-AZ/gfVPC3lsKbk9/yHI60ygNyOkN5jsCb4bHxXFbW0bss3XYtR/J1XWFJGkFNiRErNnTz6jnDrhsGCr7+JPfiA==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -2250,6 +2258,10 @@ snapshots:
       '@capacitor/core': 6.0.0
 
   '@capacitor/app@6.0.0(@capacitor/core@6.0.0)':
+    dependencies:
+      '@capacitor/core': 6.0.0
+
+  '@capacitor/camera@6.0.0(@capacitor/core@6.0.0)':
     dependencies:
       '@capacitor/core': 6.0.0
 
