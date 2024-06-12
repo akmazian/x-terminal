@@ -1,16 +1,21 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 import { useSignInMutation, useSignUpMutation } from '@/lib/store/auth'
 
-const AuthPage = () => {
+const Auth = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
     const [signUp, { isLoading: isSignUpLoading, error: signUpError }] =
         useSignUpMutation()
-    const [signIn, { isLoading: isSignInLoading, error: signInError }] =
-        useSignInMutation()
+    const [
+        signIn,
+        {
+            isLoading: isSignInLoading,
+            error: signInError,
+            isSuccess: isSignInSuccess,
+            data: signInData,
+        },
+    ] = useSignInMutation()
 
     useEffect(() => {
         if (signUpError) throw signUpError
@@ -21,7 +26,7 @@ const AuthPage = () => {
     }, [signInError])
 
     return (
-        <div className="">
+        <div className="flex flex-col">
             <input
                 type="email"
                 className="text-black"
@@ -54,8 +59,14 @@ const AuthPage = () => {
             </button>
             {isSignUpLoading && <>Sign Up Loading</>}
             {isSignInLoading && <>Sign In Loading</>}
+            {isSignInSuccess && (
+                <p className="whitespace-pre">
+                    Session: {JSON.stringify(signInData, null, 4)}
+                    User: {JSON.stringify(signInData.user, null, 4)}
+                </p>
+            )}
         </div>
     )
 }
 
-export default AuthPage
+export default Auth
