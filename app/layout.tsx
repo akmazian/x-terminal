@@ -18,9 +18,9 @@ import '@ionic/react/css/text-transformation.css'
 import '@ionic/react/css/flex-utils.css'
 import '@ionic/react/css/display.css'
 
-import '../styles/global.css'
-import '../styles/variables.css'
-import Providers from '../components/navigation/Providers'
+import '@/lib/styles/global.css'
+import '@/lib/styles/variables.css'
+import Providers from '../components/providers'
 
 export const metadata: Metadata = {
     title: 'Create Next App',

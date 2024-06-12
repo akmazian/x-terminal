@@ -1,5 +1,14 @@
 import React, { useState, useEffect, FC, PropsWithChildren } from 'react'
 
+export type XTError = {
+    status: string
+    data: string
+}
+
+type XTErrorEvent<T> = T & {
+    error: XTError
+}
+
 interface ErrorInfo {
     message: string
     stack?: string
@@ -9,7 +18,7 @@ const ErrorBoundary: FC<PropsWithChildren> = ({ children }) => {
     const [errorInfo, setErrorInfo] = useState<ErrorInfo>()
 
     useEffect(() => {
-        const errorHandler = (event: ErrorEvent) => {
+        const errorHandler = (event: XTErrorEvent<ErrorEvent>) => {
             console.error('Caught error:', event.error || event.message)
 
             setErrorInfo({
